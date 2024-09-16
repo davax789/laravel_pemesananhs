@@ -1,0 +1,14 @@
+.pagination .page-item .page-link {
+    padding: 0.25rem 0.5rem; /* Ubah padding sesuai kebutuhan */
+    font-size: 0.875rem; /* Ubah ukuran font sesuai kebutuhan */
+}
+
+.pagination .page-item .page-link {
+    border-radius: 0.2rem; /* Ubah radius sesuai kebutuhan */
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d; /* Warna untuk tombol disabled */
+    background-color: #fff; /* Latar belakang untuk tombol disabled */
+    border-color: #dee2e6; /* Warna border untuk tombol disabled */
+}
