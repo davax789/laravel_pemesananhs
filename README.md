@@ -1,9 +1,9 @@
    <p>git clone https://github.com/davax789/laravel_pemesananhs.git </p>
       <p>cd laravel_pemesananhs </p>
-     composer install / composer update
-     ubah file .env.example  menjadi .env
-     php artisan key:generate
-    Edit file .env untuk mengkonfigurasi koneksi database 
-    php artisan serve
+      <p>composer install / composer update </p>
+     <p> ubah file .env.example  menjadi .env </p>
+      <p>php artisan key:generate </p>
+    <p> Edit file .env untuk mengkonfigurasi koneksi database  </p>
+     <p>php artisan serve </p>
 
 
