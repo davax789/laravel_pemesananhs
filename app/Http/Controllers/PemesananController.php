@@ -18,14 +18,12 @@ class PemesananController extends Controller
 
     public function create()
     {
-        // Hanya mengambil kamar dengan status 'tersedia'
         $kamars = Kamar::where('status', 'tersedia')->get(); 
         return view('pemesanan.tambahdata', compact('kamars'));
     }
     
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'nama_pemesan' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
@@ -33,11 +31,10 @@ class PemesananController extends Controller
             'tglmasuk' => 'required|date',
             'tglkeluar' => 'required|date|after:tglmasuk',
             'total_pembayaran' => 'required|numeric',
-            'no_kamar' => 'required|string|exists:kamars,nama_kamar', // validasi no_kamar harus ada di tabel kamar
+            'no_kamar' => 'required|string|exists:kamar,nama_kamar', 
             'admin' => 'required|string|max:255',
         ]);
     
-        // Simpan data pemesanan
         $pemesanan = new Pemesan();
         $pemesanan->nama_pemesan = $request->input('nama_pemesan');
         $pemesanan->alamat = $request->input('alamat');
@@ -49,7 +46,6 @@ class PemesananController extends Controller
         $pemesanan->admin = $request->input('admin');
         $pemesanan->save();
     
-        // Update status kamar menjadi 'tidak tersedia'
         $kamar = Kamar::where('nama_kamar', $request->input('no_kamar'))->first();
         if ($kamar) {
             $kamar->status = 'tidak tersedia';
@@ -71,31 +67,28 @@ class PemesananController extends Controller
         $print = Pemesan::find($id);
     
         if (!$print) {
-            // Jika tidak ditemukan, Anda bisa mengarahkan ke halaman lain atau menampilkan pesan kesalahan
             return redirect()->route('pemesanan.invoice')->with('error', 'Data tidak ditemukan');
         }
     
         return view('pemesanan.invoice', compact('print'));
     }     
 
-    // Di PemesananController
+   
 public function details($id)
 {
-    // Ambil data pemesanan berdasarkan ID
+    
     $simpanDt = Pemesan::find($id);
 
-    // Periksa apakah data ditemukan
+   
     if (!$simpanDt) {
         return redirect()->back()->with('error', 'Data tidak ditemukan');
     }
 
-    // Pass data ke view
     return view('pemesanan.detail', ['simpanDt' => $simpanDt]);
 }
-    // Di PemesananController
+ 
     public function simpanDt(Request $request)
     {
-        // Validasi data
         $validatedData = $request->validate([
             'nama_pemesan' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
@@ -107,7 +100,6 @@ public function details($id)
             'admin' => 'required|string|max:255',
         ]);
     
-        // Simpan data pemesanan
         Pemesan::create([
             'nama_pemesan' => $request->nama_pemesan,
             'alamat' => $request->alamat,
@@ -119,14 +111,14 @@ public function details($id)
             'admin' => $request->admin,
         ]);
     
-        // Perbarui status kamar menjadi tidak tersedia
+  
         $kamar = Kamar::where('nama_kamar', $request->no_kamar)->first();
         if ($kamar) {
             $kamar->status = 'tidak tersedia';
             $kamar->save();
         }
     
-        // Redirect dengan pesan sukses
+       
         return redirect()->back()->with('success', 'Data pemesanan berhasil disimpan!');
     }
     

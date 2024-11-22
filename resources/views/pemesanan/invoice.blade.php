@@ -109,6 +109,7 @@
                     <th>No Kamar</th>
                     <th>Admin</th>
                     <th>Total Pembayaran</th>
+                    
                 </tr>
             </thead>
             <td>{{ $print->nama_pemesan }}</td>
@@ -120,7 +121,7 @@
             <td>Rp {{ number_format($print->total_pembayaran, 0, ',', '.') }}</td>
             <tfoot>
                     <td colspan="3"><strong>Total</strong></td>
-                    <td>Rp {{ number_format($print->total_pembayaran, 0, ',', '.') }}</td>
+                    <td colspan="4" style="text-align: center;"><strong>Rp {{ number_format($print->total_pembayaran, 0, ',', '.') }}</strong></td>
                 </tr>
             </tfoot>
         </table>
@@ -133,7 +134,7 @@
 
             <script type="text/javascript">
             window.print();
-
+                
             </script>
             </div>
             <div>
@@ -148,11 +149,8 @@
             document.getElementById('live-date').innerHTML = formattedDate;
         }
     
-        // Update tanggal setiap detik
         setInterval(updateDateTime, 1000);
-    
-        // Panggil fungsi untuk menampilkan tanggal saat halaman pertama kali dimuat
-        updateDateTime();
+            updateDateTime();
     </script>
 </body>
 </html>

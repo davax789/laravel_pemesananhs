@@ -43,11 +43,10 @@ class KamarController extends Controller
 
 
 
-    // Mengubah status kamar ketika dipesan
     public function pesananMasuk($id)
     {
         $kamar = Kamar::findOrFail($id);
-        $kamar->status = 'inactive'; // Status berubah menjadi 'inactive' ketika dipesan
+        $kamar->status = 'inactive';
         $kamar->save();
 
         return redirect()->back()->with('success', 'Kamar telah dipesan.');
@@ -57,7 +56,7 @@ class KamarController extends Controller
     public function pesananSelesai($id)
     {
         $kamar = Kamar::findOrFail($id);
-        $kamar->status = 'active'; // Status kembali menjadi 'active' setelah pesanan selesai
+        $kamar->status = 'active'; 
         $kamar->save();
 
         return redirect()->back()->with('success', 'Kamar telah tersedia kembali.');
@@ -79,8 +78,8 @@ class KamarController extends Controller
     {
         $kamar = Kamar::find($id);
         if ($kamar) {
-            $kamar->status = 'Tidak Tersedia'; // Mengubah status menjadi 'Tidak Tersedia'
-            $kamar->save(); // Menyimpan perubahan ke database
+            $kamar->status = 'Tidak Tersedia';
+            $kamar->save();
             return redirect()->back()->with('success', 'Status kamar telah diperbarui.');
         } else {
             return redirect()->back()->with('error', 'Kamar tidak ditemukan.');
@@ -90,7 +89,7 @@ class KamarController extends Controller
 {
     $kamar = Kamar::find($id);
     if ($kamar) {
-        $kamar->status = 'Tersedia'; // Atur status menjadi 'Tersedia'
+        $kamar->status = 'Tersedia';
         $kamar->save();
         return redirect()->back()->with('success', 'Status kamar telah diperbarui menjadi Tersedia.');
     }

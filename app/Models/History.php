@@ -9,14 +9,13 @@ class History extends Model
 {
     use HasFactory;
 
-    protected $table = 'history'; // Pastikan nama tabel sesuai dengan tabel di database
+    protected $table = 'history'; 
 
-    // Jika Anda tidak ingin mengizinkan pengisian massal untuk semua kolom
-    // pastikan untuk mendefinisikan atribut yang dapat diisi
+
     protected $fillable = [
         'nama_pemesan',
         'alamat',
-        'nohp',
+        'nohp', 
         'tglmasuk',
         'tglkeluar',
         'total_pembayaran',

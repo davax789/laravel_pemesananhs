@@ -13,13 +13,13 @@ class CreateKamarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kamars', function (Blueprint $table) {
+        Schema::create('kamar', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kamar', 50);
             $table->string('jenis_kamar', 50);
-            $table->string('status', 50)->default('active'); // Status default 'active'
-            $table->string('images')->nullable(); // Kolom untuk gambar kamar
-            $table->timestamps(); // Tambahkan timestamps untuk created_at dan updated_at
+            $table->string('status', 50)->default('active');
+            $table->string('images')->nullable();
+            $table->timestamps();
         });
     }
 

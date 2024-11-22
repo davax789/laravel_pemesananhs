@@ -13,8 +13,8 @@ class DatapemesanController extends Controller
         $simpanDt = Pemesan::paginate(10);
         return view('pemesanan.datapemesanan', compact('simpanDt'));
     }
-    public function edit($id)
-    {
+public function edit($id)
+{
         $dt = Pemesan::findOrFail($id);
 
         return view('pemesanan.editdata', compact('dt'));
@@ -27,16 +27,12 @@ public function update(Request $request ,$id)
 }
 public function destroy($id)
 {
-    // Temukan pemesanan berdasarkan id
     $pemesanan = Pemesan::findOrFail($id);
 
-    // Ambil kamar terkait menggunakan relasi
     $kamar = Kamar::where('nama_kamar', $pemesanan->no_kamar)->first();
 
-    // Hapus pemesanan
     $pemesanan->delete();
 
-    // Jika kamar ditemukan, ubah statusnya menjadi 'Tersedia'
     if ($kamar) {
         $kamar->status = 'Tersedia';
         $kamar->save();

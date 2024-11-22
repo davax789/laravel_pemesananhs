@@ -18,25 +18,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get(uri: '/pemesanan', action: [PemesananController::class, 'index'])->name('pemesanan');
-Route::get(uri: '/datapemesanan', action: [DatapemesanController::class, 'index'])->name('datapemesanan');
-Route::get(uri: '/tambahdata', action: [PemesananController::class, 'create'])->name('tambahdata');
-Route::post(uri: '/simpandata', action: [PemesananController::class, 'store'])->name('simpandata');
-Route::get('/editdata/{id}', [DatapemesanController::class, 'edit'])->name('editdata');
-Route::post('/updatedata/{id}', [DatapemesanController::class, 'update'])->name('updatedata');
-Route::get('/delete/{id}', [DatapemesanController::class, 'destroy'])->name('delete');
-Route::get('/details/{id}', [DetailsController::class, 'show'])->name('details');
-Route::get('/invoice/{id}', [PemesananController::class, 'show'])->name('invoice');
-Route::put('/pemesanan/{id}/selesai', [HistoriController::class, 'selesai'])->name('pemesanan.selesai');
-Route::get('/history', action: [HistoriController::class, 'index'])->name('history.index');
-Route::get('/detailshistory/{id}', [DetailHistoryController::class, 'show'])->name('details');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 
 Route::group(['middleware' => ['auth']], function () {
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get(uri: '/pemesanan', action: [PemesananController::class, 'index'])->name('pemesanan');
 Route::get(uri: '/datapemesanan', action: [DatapemesanController::class, 'index'])->name('datapemesanan');
 Route::get(uri: '/tambahdata', action: [PemesananController::class, 'create'])->name('tambahdata');
@@ -55,7 +38,7 @@ Route::get('/kamarhapus/{id}', [KamarController::class, 'destroy'])->name('kamar
 Route::get(uri: '/tambahkamar', action: [KamarController::class, 'create'])->name('tambahkamar');
 Route::post(uri: '/simpankamar', action: [KamarController::class, 'store'])->name('simpankamar');
 Route::post('/update-status/{id}', [KamarController::class, 'updateStatus'])->name('updateStatus');
-Route::post('kamar/available/{id}', [KamarController::class, 'updateStatusToAvailable'])->name('updateStatusToAvailable');
+Route::post('kamar/available/{id}',[KamarController::class, 'updateStatusToAvailable'])->name('updateStatusToAvailable');
 Route::post('simpanDt', [PemesananController::class, 'simpanDt'])->name('simpanDt');
 
 });
